@@ -1,10 +1,12 @@
 # tools.py
-# Utility functions for scraping, cleaning, emailing
 import requests
+from bs4 import BeautifulSoup
 
 def scrape_website(url):
-    response = requests.get(url)
-    return response.text
+    headers = {"User-Agent": "Mozilla/5.0 (compatible)"}
+    r = requests.get(url, headers=headers, timeout=10)
+    r.raise_for_status()
+    return r.text
 
 def clean_text(text):
     return ' '.join(text.split())
