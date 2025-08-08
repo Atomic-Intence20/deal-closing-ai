@@ -1,12 +1,15 @@
-# tools.py
-import requests
-from bs4 import BeautifulSoup
+import streamlit as st
+import random
 
-def scrape_website(url):
-    headers = {"User-Agent": "Mozilla/5.0 (compatible)"}
-    r = requests.get(url, headers=headers, timeout=10)
-    r.raise_for_status()
-    return r.text
+def get_all_tools():
+    return ["Email Generator", "Data Cleaner", "CRM Updater"]
 
-def clean_text(text):
-    return ' '.join(text.split())
+def run_tool(tool_name):
+    if tool_name == "Email Generator":
+        return "Generated email: Hi there, just touching base regarding our last conversation."
+    elif tool_name == "Data Cleaner":
+        return f"Cleaned {random.randint(50, 200)} records from the dataset."
+    elif tool_name == "CRM Updater":
+        return "CRM updated successfully with new lead details."
+    else:
+        return "Tool not recognized."
