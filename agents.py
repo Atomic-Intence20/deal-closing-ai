@@ -1,16 +1,27 @@
-# agents.py
-# Lightweight placeholders for agents (no external LLM required)
-# If you later want to add CrewAI, replace these with real Agent code.
+import streamlit as st
+import random
 
-def lead_scraper_example(url):
-    """Simple example scraper wrapper. Returns scraped text or empty string."""
-    from tools import scrape_website, clean_text
-    try:
-        raw = scrape_website(url)
-        return clean_text(raw)
-    except Exception:
-        return ""
+def show_agents():
+    st.subheader("🤖 AI Agents for Deal Closing")
 
-def pitch_writer_example(lead_text):
-    """Create a simple pitch text given lead text (placeholder)."""
-    return f"Hello — we saw your website and can help. Summary: {lead_text[:300]}"
+    agent = st.selectbox(
+        "Select an agent to run:",
+        ["Lead Analysis", "Follow-up Generator", "Deal Closing Assistant"]
+    )
+
+    if st.button("Run Agent"):
+        if agent == "Lead Analysis":
+            st.write("Analyzing leads... 📈")
+            st.success("Top leads identified with **78% closing probability**.")
+        elif agent == "Follow-up Generator":
+            st.write("Generating follow-up email... 📧")
+            email = "Hi John, just following up on our last discussion. Looking forward to hearing from you!"
+            st.code(email, language="markdown")
+        elif agent == "Deal Closing Assistant":
+            st.write("Providing deal-closing suggestions... 💼")
+            suggestions = [
+                "Offer a 5% discount for early sign-up",
+                "Highlight limited-time bonus",
+                "Send personalized thank-you email"
+            ]
+            st.write(suggestions[random.randint(0, len(suggestions)-1)])
